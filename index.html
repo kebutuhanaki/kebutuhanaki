@@ -3,772 +3,922 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sel Aki Mobil - Hemat Ganti Sel Saja!</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Belajar Servis dan Perakitan Aki Mobil dari Nol - Kelas Online</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-blue: #0a3d62;
-            --accent-green: #2ecc71;
-            --light-blue: #3498db;
-            --dark-blue: #082f49;
-            --light-gray: #f8f9fa;
+            --gold: #FFD700;
+            --light-gold: #FFEC8B;
+            --silver: #C0C0C0;
+            --dark-silver: #8C8C8C;
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
         }
         
         body {
             font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background-color: var(--light);
             color: #333;
-            background-color: #f9fbfd;
         }
         
-        .navbar {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
-            padding: 15px 0;
+        .gold-gradient {
+            background: linear-gradient(135deg, #FFD700, #D4AF37);
         }
         
-        .hero {
-            background: linear-gradient(rgba(10, 61, 98, 0.9), rgba(8, 47, 73, 0.9)), url('https://images.unsplash.com/photo-1563720223880-8d83b8a9d3f7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
+        .silver-gradient {
+            background: linear-gradient(135deg, #e0e0e0, #b8b8b8);
+        }
+        
+        .dark-gradient {
+            background: linear-gradient(135deg, #2c3e50, #1a1a1a);
+        }
+        
+        .hero-section {
+            padding: 150px 0 100px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
             color: white;
-            padding: 100px 0;
             position: relative;
-        }
-        
-        .section-title {
-            position: relative;
-            margin-bottom: 40px;
-            color: var(--primary-blue);
-            font-weight: 700;
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: var(--accent-green);
-            border-radius: 2px;
-        }
-        
-        .product-card {
-            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            background: white;
-            height: 100%;
         }
         
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-        
-        .product-card-header {
-            padding: 25px;
-            color: white;
-            font-weight: 600;
-        }
-        
-        .product-card-body {
-            padding: 25px;
-        }
-        
-        .price-table {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .price-table thead th {
-            background: var(--primary-blue);
-            color: white;
-            padding: 15px;
-            font-weight: 500;
-        }
-        
-        .price-table tbody td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .benefit-card {
-            background: white;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            height: 100%;
-            transition: all 0.3s;
-        }
-        
-        .benefit-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-        
-        .benefit-icon {
-            font-size: 2.5rem;
-            color: var(--accent-green);
-            margin-bottom: 20px;
-        }
-        
-        .faq-card {
-            background: white;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
-            border-left: 4px solid var(--accent-green);
-        }
-        
-        .cta-section {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
-            color: white;
-            padding: 80px 0;
-            border-radius: 15px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .reseller-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 15px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-        }
-        
-        .gallery-item {
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            position: relative;
-            height: 250px;
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: all 0.5s ease;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        
-        .gallery-overlay {
+        .hero-section::before {
+            content: "";
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(10, 61, 98, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: all 0.3s;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255, 215, 0, 0.05)"/></svg>');
+            background-size: cover;
+            opacity: 0.3;
         }
         
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 40px;
+            font-weight: 700;
         }
         
-        .btn-wa {
-            background: #25D366;
-            color: white;
-            font-weight: 600;
-            padding: 12px 25px;
-            border-radius: 50px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-            text-decoration: none;
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 2px;
         }
         
-        .btn-wa:hover {
-            background: #128C7E;
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        .gold-highlight {
+            color: var(--gold);
+            font-weight: 700;
         }
         
-        .btn-wa i {
-            margin-right: 8px;
-            font-size: 1.2rem;
-        }
-        
-        .btn-primary-custom {
-            background: var(--accent-green);
+        .btn-gold {
+            background: linear-gradient(135deg, #FFD700, #D4AF37);
+            color: #1a1a1a;
             border: none;
-            padding: 12px 25px;
             font-weight: 600;
-            transition: all 0.3s;
+            padding: 12px 30px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
         }
         
-        .btn-primary-custom:hover {
-            background: #27ae60;
+        .btn-gold:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+            color: #1a1a1a;
         }
         
-        .sticky-wa {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            border-radius: 50px;
-            padding: 15px 20px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        .feature-box {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
         
         .feature-icon {
-            background: rgba(46, 204, 113, 0.1);
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
+            background: linear-gradient(135deg, #FFEC8B, #FFD700);
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 20px;
-            color: var(--accent-green);
-            font-size: 1.5rem;
+            font-size: 28px;
+            color: #1a1a1a;
         }
         
-        footer {
-            background: var(--dark-blue);
+        .promo-card {
+            background: linear-gradient(135deg, #1a1a1a, #2c3e50);
             color: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .promo-badge {
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background: linear-gradient(135deg, #FF0000, #B22222);
+            color: white;
+            padding: 8px 40px;
+            transform: rotate(45deg);
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .countdown-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            margin: 0 5px;
+            min-width: 70px;
+        }
+        
+        .countdown-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        
+        .countdown-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+        
+        .price-display {
+            font-size: 36px;
+            font-weight: 700;
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            opacity: 0.7;
+            font-size: 24px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: """;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 60px;
+            opacity: 0.1;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .testimonial-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--gold);
+        }
+        
+        .faq-item {
+            margin-bottom: 15px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .faq-question {
+            background: white;
+            padding: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            background: #f9f9f9;
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+        
+        .footer-cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer-cta::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255, 215, 0, 0.05)"/></svg>');
+            background-size: cover;
+            opacity: 0.3;
+        }
+        
+        .footer {
+            background: #0f0f0f;
+            color: #aaa;
             padding: 50px 0 20px;
         }
         
-        @media (max-width: 768px) {
-            .hero {
-                padding: 70px 0;
-            }
-            
-            .sticky-wa {
-                bottom: 15px;
-                right: 15px;
-                padding: 12px 18px;
-                font-size: 0.9rem;
-            }
-            
-            .sticky-wa i {
-                font-size: 1.2rem;
-                margin-right: 5px;
-            }
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: var(--gold);
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background: var(--gold);
+            color: #1a1a1a;
+            transform: translateY(-3px);
+        }
+        
+        .battery-icon {
+            color: var(--gold);
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+        
+        .tool-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background: rgba(0, 0, 0, 0.03);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .tool-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--gold);
+        }
+        
+        .benefit-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .benefit-list li i {
+            color: var(--gold);
+            font-size: 1.2em;
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+        
+        .stats-box {
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+        
+        .stats-number {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 5px;
         }
     </style>
 </head>
 <body>
-    <!-- WhatsApp Sticky Button -->
-    <a href="https://wa.me/6283112853692" class="btn-wa sticky-wa" target="_blank">
-        <i class="fab fa-whatsapp"></i> Pesan Sekarang
-    </a>
-    
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">
-                <i class="fas fa-car-battery me-2"></i>KebutuhanAki.com
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#produk">Produk</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#harga">Harga</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#benefit">Keuntungan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#faq">FAQ</a>
-                    </li>
-                    <li class="nav-item ms-lg-3">
-                        <a class="btn btn-wa" href="https://wa.me/6283112853692" target="_blank">
-                            <i class="fab fa-whatsapp me-2"></i>WhatsApp
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero-section" id="home">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-7">
-                    <h1 class="display-4 fw-bold mb-4">🔋 Aki Mobil Lemah? Ganti Sel-nya Saja!</h1>
-                    <p class="lead mb-5">Lebih hemat dari beli aki baru – bisa order lembaran atau siap pasang! Hemat hingga 70% dengan kualitas terjamin.</p>
-                    <div class="d-flex flex-wrap gap-3">
-                        <a href="https://wa.me/6283112853692" class="btn btn-primary-custom btn-lg" target="_blank">
-                            <i class="fab fa-whatsapp me-2"></i>Pesan via WhatsApp
-                        </a>
-                        <a href="#produk" class="btn btn-outline-light btn-lg">
-                            <i class="fas fa-list me-2"></i>Lihat Produk
-                        </a>
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h1 class="display-3 fw-bold mb-4">Belajar Servis dan Perakitan <span class="gold-highlight">Aki Mobil</span> dari Nol</h1>
+                    <p class="lead mb-5">Kuasai teknik servis, troubleshooting, perakitan plat sel, dan pembuatan alat custom untuk aki mobil secara praktis dan aplikatif</p>
+                    <a href="#pricing" class="btn btn-gold btn-lg">
+                        <i class="fas fa-bolt me-2"></i>Daftar Sekarang
+                    </a>
+                    <div class="mt-5 d-flex align-items-center">
+                        <div class="d-flex me-4">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle border border-2 border-warning" width="40" height="40" alt="Student">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" class="rounded-circle border border-2 border-warning ms-n2" width="40" height="40" alt="Student">
+                            <img src="https://randomuser.me/api/portraits/men/62.jpg" class="rounded-circle border border-2 border-warning ms-n2" width="40" height="40" alt="Student">
+                        </div>
+                        <p class="mb-0"><span class="fw-bold">+100</span> peserta telah bergabung!</p>
                     </div>
                 </div>
-                <div class="col-lg-5 d-none d-lg-block">
-                    <div class="text-center">
-                        <img src="https://images.unsplash.com/photo-1595941069915-4ebc5197c14a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Sel Aki Mobil" class="img-fluid rounded-3 shadow">
+                <div class="col-lg-6 mt-5 mt-lg-0" data-aos="fade-left">
+                    <div class="position-relative">
+                        <div class="position-absolute top-0 start-0 w-100 h-100 bg-warning rounded-3" style="opacity: 0.1; transform: rotate(5deg);"></div>
+                        <div class="position-relative bg-dark rounded-3 overflow-hidden p-4">
+                            <div class="position-relative" style="padding-bottom: 75%;">
+                                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
+                                    <div class="text-center p-4">
+                                        <i class="fas fa-car-battery display-1 text-gold mb-3"></i>
+                                        <h3 class="text-white">Kelas Online Interaktif</h3>
+                                        <p class="text-white-50">Panduan lengkap dari dasar hingga mahir</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Produk Section -->
-    <section id="produk" class="py-5">
-        <div class="container py-5">
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-8 text-center">
-                    <h2 class="section-title text-center d-inline-block">📲 Pilih Produk Sesuai Kebutuhan</h2>
-                    <p class="text-muted">Tersedia dua pilihan produk untuk memenuhi kebutuhan perawatan aki mobil Anda</p>
-                </div>
-            </div>
-            
-            <div class="row g-5">
-                <div class="col-lg-6">
-                    <div class="product-card">
-                        <div class="product-card-header" style="background: var(--primary-blue);">
-                            <h3><i class="fas fa-tools me-2"></i> A. Sel Aki Mobil Lembaran (Isi Ulang)</h3>
-                        </div>
-                         <div class="text-center my-3">
-            <img src="lembaran.png" alt="Sel Aki Rangkaian" class="img-fluid" style="max-height: 300px; border-radius: 10px;">
-        </div>
-                        <div class="product-card-body">
-                            <p class="text-muted mb-4">Cocok untuk teknisi, bengkel, distributor</p>
-                            <ul class="list-group list-group-flush mb-4">
-                                <li class="list-group-item d-flex align-items-center">
-                                    <i class="fas fa-check-circle text-success me-3"></i>
-                                    Harga hemat mulai Rp8.000 / lembar
-                                </li>
-                                <li class="list-group-item d-flex align-items-center">
-                                    <i class="fas fa-check-circle text-success me-3"></i>
-                                    Tersedia untuk tipe aki: N40 s/d N200
-                                </li>
-                                <li class="list-group-item d-flex align-items-center">
-                                    <i class="fas fa-check-circle text-success me-3"></i>
-                                    Cocok untuk aki basah & hybrid
-                                </li>
-                                <li class="list-group-item d-flex align-items-center">
-                                    <i class="fas fa-check-circle text-success me-3"></i>
-                                    Kirim seluruh Indonesia
-                                </li>
-                            </ul>
-                            <div class="alert alert-success">
-                                <i class="fas fa-box me-2"></i> <strong>Order grosir?</strong> Ada harga lebih murah!
-                            </div>
-                            <a href="https://wa.me/6283112853692?text=Saya%20ingin%20tanya%20harga%20grosir%20sel%20aki" class="btn btn-wa w-100" target="_blank">
-                                <i class="fab fa-whatsapp me-2"></i>Klik untuk tanya via WA
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-6">
-    <div class="product-card">
-        <div class="product-card-header" style="background: var(--accent-green);">
-            <h3><i class="fas fa-bolt me-2"></i> B. Sel Aki Rangkaian Siap Pasang</h3>
-        </div>
-        <!-- Gambar di tengah & responsif -->
-        <div class="text-center my-3">
-            <img src="rangkaian.png" alt="Sel Aki Rangkaian" class="img-fluid" style="max-height: 300px; border-radius: 10px;">
-        </div>
-        <div class="product-card-body">
-            <p class="text-muted mb-4">Tinggal pasang, tanpa repot merakit</p>
-            <ul class="list-group list-group-flush mb-4">
-                <li class="list-group-item d-flex align-items-center">
-                    <i class="fas fa-check-circle text-success me-3"></i>
-                    Sudah dirakit & dites
-                </li>
-                <li class="list-group-item d-flex align-items-center">
-                    <i class="fas fa-check-circle text-success me-3"></i>
-                    Garansi 1 bulan
-                </li>
-                <li class="list-group-item d-flex align-items-center">
-                    <i class="fas fa-check-circle text-success me-3"></i>
-                    Cocok untuk mobil pribadi & fleet
-                </li>
-                <li class="list-group-item d-flex align-items-center">
-                    <i class="fas fa-check-circle text-success me-3"></i>
-                    Kirim nasional
-                </li>
-            </ul>
-            <div class="alert alert-info">
-                <i class="fas fa-tag me-2"></i> <strong>Harga mulai Rp45.000 – Rp183.000</strong>
-            </div>
-            <a href="https://wa.me/6283112853692" class="btn btn-wa w-100" target="_blank">
-                <i class="fab fa-whatsapp me-2"></i>Pesan Sekarang via WA
-            </a>
-        </div>
-    </div>
-</div>
 
-            </div>
-        </div>
-    </section>
-    
-    <!-- Harga Section -->
-    <section id="harga" class="py-5 bg-light">
+    <!-- Tentang Kelas -->
+    <section class="py-5">
         <div class="container py-5">
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-8 text-center">
-                    <h2 class="section-title text-center d-inline-block">📦 Menu Produk & Harga</h2>
-                    <p class="text-muted">Daftar harga lengkap untuk semua produk sel aki mobil</p>
-                </div>
-            </div>
-            
-            <div class="row g-5">
-                <div class="col-lg-6">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white py-3">
-                            <h4 class="mb-0"><i class="fas fa-layer-group me-2 text-primary"></i> Sel Aki Lembaran</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table price-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Tipe Aki</th>
-                                            <th>Harga per Lembar</th>
-                                            <th>Order</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>N40 – N70</td>
-                                            <td>Rp 8.000</td>
-                                            <td>
-                                                <a href="https://wa.me/6283112853692?text=Saya%20ingin%20order%20sel%20aki%20tipe%20N40-N70" class="btn btn-sm btn-outline-success" target="_blank">Order</a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>N100 – N200</td>
-                                            <td>Rp 10.000</td>
-                                            <td>
-                                                <a href="https://wa.me/6283112853692?text=Saya%20ingin%20order%20sel%20aki%20tipe%20N100-N200" class="btn btn-sm btn-outline-success" target="_blank">Order</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="mt-4 bg-warning-light p-3 rounded">
-                                <i class="fas fa-boxes me-2 text-warning"></i> <strong>Order banyak?</strong> Dapat harga khusus!
-                                <div class="mt-2">
-                                    <i class="fas fa-phone-alt me-2"></i> Hubungi: <strong>0831-1285-3692</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-6">
-                    <div class="card border-0 shadow-sm">
-                        <div class="card-header bg-white py-3">
-                            <h4 class="mb-0"><i class="fas fa-cogs me-2 text-success"></i> Sel Aki Rangkaian Siap Pasang</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table price-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Tipe Aki</th>
-                                            <th>Status</th>
-                                            <th>Order</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>N40 – N200</td>
-                                            <td><span class="badge bg-success">Ready stock</span></td>
-                                            <td>
-                                                <a href="https://wa.me/6283112853692" class="btn btn-sm btn-success" target="_blank">Pesan via WA</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="mt-4">
-                                <p><i class="fas fa-tag me-2 text-info"></i> <strong>Harga: Rp45.000 – Rp183.000</strong></p>
-                                <p><i class="fas fa-shield-alt me-2 text-primary"></i> <strong>Garansi 1 bulan</strong></p>
-                                <div class="alert alert-info mt-3">
-                                    <i class="fas fa-info-circle me-2"></i> Harga bervariasi tergantung tipe aki. Silakan konsultasi untuk harga spesifik.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Benefit Section -->
-    <section id="benefit" class="py-5">
-        <div class="container py-5">
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-8 text-center">
-                    <h2 class="section-title text-center d-inline-block">🎯 Kenapa Ganti Sel Aja?</h2>
-                    <p class="text-muted">Keuntungan mengganti sel aki dibandingkan membeli aki baru</p>
+                    <h2 class="section-title">Tentang Kelas Ini</h2>
+                    <p class="lead">Kelas online komprehensif yang dirancang untuk membuat Anda menguasai semua aspek servis dan perakitan aki mobil dari dasar hingga tingkat profesional.</p>
                 </div>
             </div>
             
             <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="benefit-card">
+                <div class="col-md-6" data-aos="fade-up">
+                    <div class="feature-box">
                         <div class="feature-icon">
-                            <i class="fas fa-percentage"></i>
+                            <i class="fas fa-video"></i>
                         </div>
-                        <h4>Hemat Biaya</h4>
-                        <p>Hemat 50–70% dibandingkan beli aki baru. Hanya ganti bagian yang rusak, tidak perlu beli aki lengkap baru.</p>
+                        <h3 class="h4 fw-bold mb-3">Format Belajar</h3>
+                        <ul class="list-unstyled benefit-list">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>30+ Video Pembelajaran HD dengan kualitas profesional</div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>E-book Panduan Lengkap</div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>Akses Grup Whatsapp untuk diskusi</div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>Dapat Harga plat sel aki murah</div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 
-                <div class="col-md-6 col-lg-4">
-                    <div class="benefit-card">
+                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-box">
                         <div class="feature-icon">
-                            <i class="fas fa-bolt"></i>
+                            <i class="fas fa-award"></i>
                         </div>
-                        <h4>Proses Cepat</h4>
-                        <p>Ganti sel aki hanya membutuhkan waktu 30-60 menit. Bisa pasang sendiri dengan panduan yang kami sediakan.</p>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-4">
-                    <div class="benefit-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-leaf"></i>
-                        </div>
-                        <h4>Ramah Lingkungan</h4>
-                        <p>Mengurangi limbah aki bekas dengan hanya mengganti bagian yang rusak. Mendukung gerakan lingkungan berkelanjutan.</p>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-4">
-                    <div class="benefit-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-box-open"></i>
-                        </div>
-                        <h4>Fleksibel Order</h4>
-                        <p>Bisa order satuan untuk perbaikan pribadi atau grosir untuk bengkel dan distributor. Sesuaikan dengan kebutuhan.</p>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-4">
-                    <div class="benefit-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-car"></i>
-                        </div>
-                        <h4>Kompatibel Luas</h4>
-                        <p>Support untuk semua tipe aki N40 – N200. Cocok untuk berbagai merek dan model mobil di Indonesia.</p>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-4">
-                    <div class="benefit-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-truck"></i>
-                        </div>
-                        <h4>Pengiriman Nasional</h4>
-                        <p>Bisa dikirim ke seluruh Indonesia. Proses packing aman dan pengiriman cepat via ekspedisi terpercaya.</p>
+                        <h3 class="h4 fw-bold mb-3">Apa yang Anda Dapatkan?</h3>
+                        <ul class="list-unstyled benefit-list">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>Pemahaman menyeluruh tentang sistem aki mobil modern</div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>Kemampuan mendiagnosa dan memperbaiki berbagai masalah aki</div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>Teknik merakit ulang plat sel dengan presisi</div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>Pengetahuan membuat alat custom untuk efisiensi servis</div>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <div>Sertifikat kelulusan yang dapat meningkatkan kredibilitas Anda</div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- FAQ Section -->
-    <section id="faq" class="py-5 bg-light">
-        <div class="container py-5">
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-8 text-center">
-                    <h2 class="section-title text-center d-inline-block">👨‍🔧 FAQ (Tanya Jawab Umum)</h2>
-                    <p class="text-muted">Pertanyaan yang sering diajukan oleh pelanggan kami</p>
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-lg-6 mb-4">
-                    <div class="faq-card">
-                        <h4><i class="fas fa-question-circle text-primary me-2"></i> Nggak tahu tipe aki saya apa?</h4>
-                        <p class="mt-3">Tidak perlu khawatir! Anda bisa mengirimkan foto aki mobil Anda ke WhatsApp kami. Tim kami akan membantu mengecek tipe aki yang sesuai dengan mobil Anda.</p>
-                    </div>
-                </div>
-                
-                <div class="col-lg-6 mb-4">
-                    <div class="faq-card">
-                        <h4><i class="fas fa-question-circle text-primary me-2"></i> Bisa COD?</h4>
-                        <p class="mt-3">✅ Tersedia layanan COD untuk area tertentu di sekitar Jabodetabek. Untuk pengiriman luar kota, kami menggunakan jasa ekspedisi terpercaya seperti JNE, TIKI, atau Sicepat.</p>
-                    </div>
-                </div>
-                
-                <div class="col-lg-6 mb-4">
-                    <div class="faq-card">
-                        <h4><i class="fas fa-question-circle text-primary me-2"></i> Bisa pasang sendiri?</h4>
-                        <p class="mt-3">✅ Sangat bisa! Kami menyediakan panduan lengkap berupa teks dan video tutorial yang mudah diikuti. Dengan alat sederhana, Anda bisa mengganti sel aki sendiri di rumah.</p>
-                    </div>
-                </div>
-                
-                <div class="col-lg-6 mb-4">
-                    <div class="faq-card">
-                        <h4><i class="fas fa-question-circle text-primary me-2"></i> Berapa lama pengiriman?</h4>
-                        <p class="mt-3">Untuk area Jabodetabek: 1-2 hari kerja. Luar Jabodetabek: 2-5 hari kerja tergantung lokasi. Kami akan memberikan nomor resi setelah paket dikirim.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- CTA Section -->
-    <section class="py-5">
-        <div class="container">
-            <div class="cta-section">
-                <div class="row justify-content-center text-center">
-                    <div class="col-lg-8">
-                        <h2 class="display-5 fw-bold mb-4">🚀 Siap order sekarang?</h2>
-                        <p class="lead mb-5">Klik tombol WhatsApp di bawah, kami bantu dari konsultasi tipe aki hingga proses pemesanan!</p>
-                        <a href="https://wa.me/6283112853692" class="btn btn-light btn-lg px-5 py-3 fw-bold" target="_blank">
-                            <i class="fab fa-whatsapp me-2"></i>WhatsApp Langsung
-                        </a>
-                        <p class="mt-4 mb-0">📱 Nomor WhatsApp: <strong>0831-1285-3692</strong></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Reseller Section -->
-    <section class="py-5">
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="reseller-card">
-                        <h3 class="mb-4"><i class="fas fa-warehouse me-2"></i> Untuk Reseller / Bengkel</h3>
-                        <p class="lead mb-4">Punya bengkel? Mau stok grosir sel aki untuk bisnis Anda?</p>
-                        <p>Dapatkan harga reseller spesial dengan keuntungan lebih besar. Kami siap menjadi supplier terpercaya untuk bisnis otomotif Anda.</p>
-                        <a href="https://wa.me/6283112853692?text=Saya%20tertarik%20jadi%20reseller%20sel%20aki" class="btn btn-primary-custom mt-3 px-4" target="_blank">
-                            <i class="fab fa-whatsapp me-2"></i>Klik untuk Penawaran Grosir
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Gallery Section -->
+
+    <!-- Kurikulum -->
     <section class="py-5 bg-light">
         <div class="container py-5">
             <div class="row justify-content-center mb-5">
                 <div class="col-lg-8 text-center">
-                    <h2 class="section-title text-center d-inline-block">📸 Galeri Produk & Testimoni</h2>
-                    <p class="text-muted">Bukti nyata kualitas produk dan kepuasan pelanggan</p>
+                    <h2 class="section-title">Yang Akan Kamu Pelajari</h2>
+                    <p class="lead">Materi lengkap dari dasar hingga teknik profesional yang diajarkan oleh praktisi berpengalaman</p>
                 </div>
             </div>
             
             <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1626721105310-8e0e2a5e32f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Hasil Ganti Sel">
-                        <div class="gallery-overlay">
-                            <h5 class="text-white">Hasil Ganti Sel Aki</h5>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-tools"></i>
                         </div>
+                        <h3 class="h5 fw-bold mb-3">Dasar-dasar Aki Mobil</h3>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Prinsip kerja aki mobil</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Komponen utama aki</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Jenis-jenis aki mobil</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Safety prosedur bekerja dengan aki</li>
+                        </ul>
                     </div>
                 </div>
                 
-                <div class="col-md-4">
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Voltase Test">
-                        <div class="gallery-overlay">
-                            <h5 class="text-white">Voltase Test Setelah Ganti</h5>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-wrench"></i>
                         </div>
+                        <h3 class="h5 fw-bold mb-3">Teknik Servis</h3>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Diagnosa masalah aki</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Perawatan rutin aki</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Isi ulang elektrolit</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Pengecasan yang benar</li>
+                        </ul>
                     </div>
                 </div>
                 
-                <div class="col-md-4">
-                    <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Testimoni Pelanggan">
-                        <div class="gallery-overlay">
-                            <h5 class="text-white">Testimoni Pelanggan</h5>
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-3">Perakitan Ulang</h3>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Membongkar aki dengan benar</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Memilih plat sel berkualitas</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Teknik merakit plat sel</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Penyegelan aki yang rapat</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-box">
+                        <div class="feature-icon">
+                            <i class="fas fa-hammer"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-3">Alat Custom</h3>
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Desain alat servis custom</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Pembuatan alat pengisi aki</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Alat pengukur kesehatan aki</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Perangkat keamanan kerja</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Untuk Siapa Kelas Ini -->
+    <section class="py-5">
+        <div class="container py-5">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8 text-center">
+                    <h2 class="section-title">Untuk Siapa Kelas Ini?</h2>
+                    <p class="lead">Kelas ini dirancang untuk berbagai kalangan yang ingin menguasai keterampilan servis dan perakitan aki mobil</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3" data-aos="fade-up">
+                    <div class="text-center p-4">
+                        <div class="d-inline-block bg-light rounded-circle p-4 mb-3">
+                            <i class="fas fa-user-graduate fa-2x text-gold"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-2">Pemula</h3>
+                        <p class="mb-0">Yang ingin memulai karir di bidang otomotif dari dasar</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-center p-4">
+                        <div class="d-inline-block bg-light rounded-circle p-4 mb-3">
+                            <i class="fas fa-user-hard-hat fa-2x text-gold"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-2">Montir</h3>
+                        <p class="mb-0">Profesional yang ingin menambah spesialisasi di bidang aki</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-center p-4">
+                        <div class="d-inline-block bg-light rounded-circle p-4 mb-3">
+                            <i class="fas fa-briefcase fa-2x text-gold"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-2">Wirausahawan</h3>
+                        <p class="mb-0">Yang ingin membuka usaha servis aki atau bengkel khusus</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-center p-4">
+                        <div class="d-inline-block bg-light rounded-circle p-4 mb-3">
+                            <i class="fas fa-user-cog fa-2x text-gold"></i>
+                        </div>
+                        <h3 class="h5 fw-bold mb-2">Hobi & DIY</h3>
+                        <p class="mb-0">Pecinta otomotif yang ingin memperbaiki aki sendiri</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-lg-8 mx-auto">
+                    <div class="bg-light rounded-3 p-4 p-md-5 text-center" data-aos="zoom-in">
+                        <h3 class="fw-bold mb-3">Mulai Perjalanan Anda Menjadi Ahli Aki Mobil!</h3>
+                        <p class="mb-4">Dengan materi praktis dan panduan langkah demi langkah, Anda akan mampu menguasai keterampilan ini dalam waktu singkat.</p>
+                        <a href="#pricing" class="btn btn-gold">
+                            <i class="fas fa-bolt me-2"></i>Daftar Kelas Sekarang
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   
+    <!-- Harga dan Promo -->
+    <section class="py-5" id="pricing">
+        <div class="container py-5">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8 text-center">
+                    <h2 class="section-title">Harga & Promo Spesial</h2>
+                    <p class="lead">Manfaatkan penawaran harga khusus untuk pendaftaran awal</p>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="promo-card p-4 p-md-5">
+                        <div class="promo-badge">PROMO</div>
+                        <div class="row align-items-center">
+                            <div class="col-md-6 mb-4 mb-md-0">
+                                <h3 class="fw-bold mb-3">Kelas Premium Akses Seumur Hidup</h3>
+                                <p>Dapatkan semua materi kelas, update materi, sertifikat, dan akses grup komunitas eksklusif</p>
+                                
+                                <div class="d-flex justify-content-center mt-4">
+                                    <div class="countdown-box">
+                                        <div class="countdown-value" id="hours">24</div>
+                                        <div class="countdown-label">Jam</div>
+                                    </div>
+                                    <div class="countdown-box">
+                                        <div class="countdown-value" id="minutes">59</div>
+                                        <div class="countdown-label">Menit</div>
+                                    </div>
+                                    <div class="countdown-box">
+                                        <div class="countdown-value" id="seconds">59</div>
+                                        <div class="countdown-label">Detik</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 text-center">
+                                <div class="bg-white rounded-3 p-4 py-5">
+                                    <div class="mb-3">
+                                        <span class="old-price text-muted">Rp 1.999.000</span>
+                                    </div>
+                                    <div class="price-display text-success mb-3">Rp 1.250.000</div>
+                                    <p class="text-danger fw-bold mb-4">Hemat Rp 749.000!</p>
+                                    <a href="https://kebutuhanaki.myr.id/pl/kelas-service-aki" class="btn btn-gold w-100 py-3 fw-bold">
+                                        <i class="fas fa-bolt me-2"></i>Daftar Sekarang
+                                    </a>
+                                    <p class="text-muted mt-3 mb-0">Garansi uang kembali 30 hari</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="stats-box">
+                        <div class="stats-number">30+</div>
+                        <div class="stats-label">Video Pembelajaran</div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stats-box">
+                        <div class="stats-number">98%</div>
+                        <div class="stats-label">Kepuasan Peserta</div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stats-box">
+                        <div class="stats-number">100+</div>
+                        <div class="stats-label">Peserta Bergabung</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimoni -->
+    <section class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8 text-center">
+                    <h2 class="section-title">Ulasan Dari yang sudah bergabung!</h2>
+                    <p class="lead">Dengarkan pengalaman langsung dari peserta yang telah mengikuti kelas ini</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <img src="https://i.ibb.co/dsSVC9zY/dreamina-2025-07-14-3730-buatkan-saya-foto-orang-indonesia-yaitu.jpg" class="testimonial-img me-3" alt="Budi Santoso">
+                            <div>
+                                <h5 class="fw-bold mb-0">Budi Santoso</h5>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">"Sebagai pemula di bidang otomotif, saya sangat terbantu dengan kelas ini. Materinya sangat praktis dan mudah dipahami. Sekarang saya sudah berani membuka usaha kecil-kecilan servis aki."</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <img src="https://i.ibb.co/HTwYxRfY/dreamina-2025-07-14-7718-buatkan-saya-foto-orang-indonesia-yaitu.jpg" class="testimonial-img me-3" alt="Siti Rahayu">
+                            <div>
+                                <h5 class="fw-bold mb-0">Siti Rahayu</h5>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">"Materi pembuatan alat custom sangat berguna! Saya bisa membuat alat charger sendiri dengan biaya murah. Kelas ini benar-benar worth it, apalagi dengan harga promonya."</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-card">
+                        <div class="d-flex align-items-center mb-4">
+                            <img src="https://i.ibb.co/93Grg1dc/dreamina-2025-07-14-8951-buatkan-saya-foto-orang-indonesia-yaitu.jpg" class="testimonial-img me-3" alt="Rudi Hartono">
+                            <div>
+                                <h5 class="fw-bold mb-0">Rudi Hartono</h5>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">"Sebagai pemilik bengkel, kelas ini membantu saya menambah layanan servis aki yang selama ini saya outsource. Dalam 3 bulan, layanan baru ini sudah bisa menambah pemasukan 30%."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-5">
+        <div class="container py-5">
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8 text-center">
+                    <h2 class="section-title">Pertanyaan Umum</h2>
+                    <p class="lead">Temukan jawaban untuk pertanyaan yang sering diajukan</p>
+                </div>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="faq-item" data-aos="fade-up">
+                        <div class="faq-question">
+                            <span>Apakah kelas ini cocok untuk pemula tanpa pengetahuan dasar?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Ya, sangat cocok! Kelas ini dirancang khusus untuk pemula dengan materi yang dimulai dari dasar-dasar yang paling fundamental. Kami akan membimbing Anda langkah demi langkah hingga mahir.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="faq-question">
+                            <span>Berapa lama akses materi kelas ini?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Anda mendapatkan akses seumur hidup! Setelah mendaftar, Anda bisa mengakses semua materi kapan saja dan di mana saja, termasuk update materi yang akan datang tanpa biaya tambahan.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="faq-question">
+                            <span>Apakah ada sertifikat setelah menyelesaikan kelas?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Ya, Anda akan mendapatkan sertifikat kelulusan digital yang bisa diunduh setelah menyelesaikan semua modul dan kuis evaluasi. Sertifikat ini dapat digunakan untuk meningkatkan kredibilitas profesional Anda.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="faq-question">
+                            <span>Bagaimana metode pembelajarannya? Apakah ada sesi live?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Metode pembelajaran utama adalah melalui video rekaman yang bisa Anda tonton kapan saja. Selain itu, ada sesi live Q&A mingguan di grup Telegram untuk berdiskusi langsung dengan mentor dan sesi workshop bulanan.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+
+    <!-- Footer CTA -->
+    <section class="footer-cta">
+        <div class="container text-center py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="display-5 fw-bold mb-4" data-aos="fade-up">Siap Menguasai Teknik Servis & Perakitan Aki Mobil?</h2>
+                    <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">Jangan lewatkan kesempatan belajar langsung dari praktisi berpengalaman. Kuota terbatas dan promo hanya berlaku 24 jam!</p>
+                    <a href="#pricing" class="btn btn-gold btn-lg px-5 py-3 fw-bold" data-aos="zoom-in" data-aos-delay="200">
+                        <i class="fas fa-bolt me-2"></i>Gabung Sekarang
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="row g-5">
+    <footer class="footer">
+        <div class="container py-4">
+            <div class="row g-4">
                 <div class="col-lg-4">
-                    <h4 class="text-white mb-4">
-                        <i class="fas fa-car-battery me-2"></i>SelAkiMobil.com
-                    </h4>
-                    <p class="text-white-50">Solusi hemat untuk perbaikan aki mobil Anda. Ganti sel saja, tidak perlu beli aki baru!</p>
+                    <h3 class="h4 text-white mb-4">
+                        <i class="battery-icon fas fa-car-battery"></i> kebutuhan aki
+                    </h3>
+                    <p>Platform pembelajaran online khusus untuk teknik servis dan perakitan aki mobil dari dasar hingga profesional.</p>
                     <div class="mt-4">
-                        <a href="https://wa.me/6283112853692" class="btn btn-wa" target="_blank">
-                            <i class="fab fa-whatsapp me-2"></i>Pesan Sekarang
-                        </a>
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
                     </div>
                 </div>
                 
                 <div class="col-lg-4">
-                    <h5 class="text-white mb-4">Kontak Kami</h5>
-                    <ul class="list-unstyled text-white-50">
-                        <li class="mb-2">
-                            <i class="fas fa-phone-alt me-3"></i> 0831-1285-3692
-                        </li>
-                        <li class="mb-2">
-                            <i class="fab fa-whatsapp me-3"></i> WhatsApp: 0831-1285-3692
-                        </li>
-                        <li class="mb-2">
-                            <i class="fas fa-envelope me-3"></i> info@selakimobil.com
-                        </li>
-                        <li>
-                            <i class="fas fa-map-marker-alt me-3"></i> Jl. Otomotif No. 123, Jakarta
-                        </li>
+                    <h3 class="h4 text-white mb-4">Kontak Kami</h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-envelope me-2 text-gold"></i> info@kebutuhan aki.com</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2 text-gold"></i> +62 812 3456 7890</li>
+                        <li><i class="fas fa-map-marker-alt me-2 text-gold"></i> Jl. Otomotif No. 123, Jakarta</li>
                     </ul>
                 </div>
                 
                 <div class="col-lg-4">
-                    <h5 class="text-white mb-4">Jam Operasional</h5>
-                    <ul class="list-unstyled text-white-50">
-                        <li class="mb-2">Senin - Jumat: 08.00 - 17.00</li>
-                        <li class="mb-2">Sabtu: 08.00 - 14.00</li>
-                        <li>Minggu & Hari Libur: Tutup</li>
+                    <h3 class="h4 text-white mb-4">Link Cepat</h3>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#home" class="text-decoration-none text-white-50 hover-gold">Beranda</a></li>
+                        <li class="mb-2"><a href="#pricing" class="text-decoration-none text-white-50 hover-gold">Promo</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-white-50 hover-gold">Syarat & Ketentuan</a></li>
+                        <li><a href="#" class="text-decoration-none text-white-50 hover-gold">Kebijakan Privasi</a></li>
                     </ul>
-                    <div class="mt-4">
-                        <a href="#" class="text-white me-3"><i class="fab fa-facebook fa-lg"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-instagram fa-lg"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-youtube fa-lg"></i></a>
-                    </div>
                 </div>
             </div>
             
-            <hr class="my-5 bg-white-10">
+            <hr class="my-4 bg-dark">
             
-            <div class="text-center text-white-50">
-                <p class="mb-0">&copy; 2023 SelAkiMobil.com. Hak Cipta Dilindungi.</p>
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 kebutuhan aki. Hak Cipta Dilindungi.</p>
             </div>
         </div>
     </footer>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // Countdown Timer (24 hours)
+        function startCountdown() {
+            const hoursElement = document.getElementById('hours');
+            const minutesElement = document.getElementById('minutes');
+            const secondsElement = document.getElementById('seconds');
+            
+            let hours = 24;
+            let minutes = 0;
+            let seconds = 0;
+            
+            const countdown = setInterval(function() {
+                seconds--;
+                if (seconds < 0) {
+                    seconds = 59;
+                    minutes--;
+                    
+                    if (minutes < 0) {
+                        minutes = 59;
+                        hours--;
+                        
+                        if (hours < 0) {
+                            clearInterval(countdown);
+                            hours = 0;
+                            minutes = 0;
+                            seconds = 0;
+                        }
+                    }
+                }
+                
+                hoursElement.textContent = hours.toString().padStart(2, '0');
+                minutesElement.textContent = minutes.toString().padStart(2, '0');
+                secondsElement.textContent = seconds.toString().padStart(2, '0');
+            }, 1000);
+        }
+        
+        // FAQ Accordion
+        $(document).ready(function() {
+            $('.faq-question').click(function() {
+                $(this).closest('.faq-item').toggleClass('active');
+                $(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+            });
+            
+            // Start countdown
+            startCountdown();
+        });
+    </script>
 </body>
 </html>
