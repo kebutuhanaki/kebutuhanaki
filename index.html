@@ -3,922 +3,724 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Belajar Servis dan Perakitan Aki Mobil dari Nol - Kelas Online</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
+    <title>Auto Chess: Bot vs Bot</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- AOS CSS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --gold: #FFD700;
-            --light-gold: #FFEC8B;
-            --silver: #C0C0C0;
-            --dark-silver: #8C8C8C;
-            --dark: #1a1a1a;
-            --light: #f8f9fa;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
-            font-family: 'Poppins', sans-serif;
-            overflow-x: hidden;
-            background-color: var(--light);
-            color: #333;
-        }
-        
-        .gold-gradient {
-            background: linear-gradient(135deg, #FFD700, #D4AF37);
-        }
-        
-        .silver-gradient {
-            background: linear-gradient(135deg, #e0e0e0, #b8b8b8);
-        }
-        
-        .dark-gradient {
-            background: linear-gradient(135deg, #2c3e50, #1a1a1a);
-        }
-        
-        .hero-section {
-            padding: 150px 0 100px;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero-section::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255, 215, 0, 0.05)"/></svg>');
-            background-size: cover;
-            opacity: 0.3;
-        }
-        
-        .section-title {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 40px;
-            font-weight: 700;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--gold);
-            border-radius: 2px;
-        }
-        
-        .gold-highlight {
-            color: var(--gold);
-            font-weight: 700;
-        }
-        
-        .btn-gold {
-            background: linear-gradient(135deg, #FFD700, #D4AF37);
-            color: #1a1a1a;
-            border: none;
-            font-weight: 600;
-            padding: 12px 30px;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
-        }
-        
-        .btn-gold:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
-            color: #1a1a1a;
-        }
-        
-        .feature-box {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            height: 100%;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .feature-box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #FFEC8B, #FFD700);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-size: 28px;
-            color: #1a1a1a;
-        }
-        
-        .promo-card {
-            background: linear-gradient(135deg, #1a1a1a, #2c3e50);
-            color: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            position: relative;
-        }
-        
-        .promo-badge {
-            position: absolute;
-            top: 20px;
-            right: -30px;
-            background: linear-gradient(135deg, #FF0000, #B22222);
-            color: white;
-            padding: 8px 40px;
-            transform: rotate(45deg);
-            font-weight: 600;
-            font-size: 14px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        
-        .countdown-box {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            margin: 0 5px;
-            min-width: 70px;
-        }
-        
-        .countdown-value {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--gold);
-        }
-        
-        .countdown-label {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.8;
-        }
-        
-        .price-display {
-            font-size: 36px;
-            font-weight: 700;
-        }
-        
-        .old-price {
-            text-decoration: line-through;
-            opacity: 0.7;
-            font-size: 24px;
-        }
-        
-        .testimonial-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            position: relative;
-        }
-        
-        .testimonial-card::before {
-            content: """;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 60px;
-            opacity: 0.1;
-            font-family: Georgia, serif;
-            line-height: 1;
-        }
-        
-        .testimonial-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid var(--gold);
-        }
-        
-        .faq-item {
-            margin-bottom: 15px;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-        }
-        
-        .faq-question {
-            background: white;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: #fff;
+            min-height: 100vh;
             padding: 20px;
-            font-weight: 600;
-            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            padding: 25px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #ff8a00, #da1b60);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .players-container {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            margin-bottom: 30px;
+            gap: 20px;
         }
-        
-        .faq-answer {
-            background: #f9f9f9;
-            padding: 0 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .faq-item.active .faq-answer {
+
+        .player {
+            flex: 1;
+            background: rgba(30, 30, 40, 0.8);
+            border-radius: 15px;
             padding: 20px;
-            max-height: 500px;
-        }
-        
-        .footer-cta {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2c3e50 100%);
-            color: white;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
             overflow: hidden;
         }
-        
-        .footer-cta::before {
+
+        .player.active {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4), 0 0 0 3px #ff8a00;
+        }
+
+        .player.active::before {
             content: "";
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255, 215, 0, 0.05)"/></svg>');
-            background-size: cover;
-            opacity: 0.3;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(to right, #ff8a00, #da1b60);
         }
-        
-        .footer {
-            background: #0f0f0f;
-            color: #aaa;
-            padding: 50px 0 20px;
+
+        .player h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #fff;
         }
-        
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 10px;
-            color: var(--gold);
-            transition: all 0.3s ease;
+
+        .player-bot-alpha h2 {
+            color: #4fc3f7;
         }
-        
-        .social-icon:hover {
-            background: var(--gold);
-            color: #1a1a1a;
-            transform: translateY(-3px);
+
+        .player-bot-bravo h2 {
+            color: #ff5252;
         }
-        
-        .battery-icon {
-            color: var(--gold);
-            font-size: 1.5em;
-            margin-right: 10px;
+
+        .clock {
+            font-size: 2.5rem;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-block;
+            min-width: 150px;
         }
-        
-        .tool-item {
+
+        .thinking-indicator {
+            font-size: 1.1rem;
+            color: #ffca28;
+            margin-top: 15px;
             display: flex;
             align-items: center;
-            padding: 10px 15px;
-            background: rgba(0, 0, 0, 0.03);
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .thinking-indicator i {
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+
+        .game-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        #board {
+            width: 500px;
+            height: 500px;
+            background-color: #2c3e50;
             border-radius: 8px;
-            margin-bottom: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            margin: 0 auto;
         }
-        
-        .tool-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 215, 0, 0.1);
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: var(--gold);
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
-        
-        .benefit-list li {
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .btn-start {
+            background: linear-gradient(to right, #00c853, #009624);
+            color: white;
+        }
+
+        .btn-pause {
+            background: linear-gradient(to right, #ff9800, #f57c00);
+            color: white;
+        }
+
+        .btn-restart {
+            background: linear-gradient(to right, #2196f3, #0d47a1);
+            color: white;
+        }
+
+        .commentary {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(30, 30, 40, 0.8);
+            border-radius: 15px;
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .commentary h3 {
+            font-size: 1.5rem;
+            color: #ffca28;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
             margin-bottom: 15px;
             display: flex;
-            align-items: flex-start;
+            align-items: center;
+            gap: 10px;
         }
-        
-        .benefit-list li i {
-            color: var(--gold);
-            font-size: 1.2em;
-            margin-right: 10px;
-            margin-top: 5px;
-        }
-        
-        .stats-box {
-            background: rgba(255, 215, 0, 0.1);
+
+        .comment {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
             border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-left: 4px solid #ff5252;
+            animation: fadeIn 0.5s ease;
         }
-        
-        .stats-number {
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--gold);
-            margin-bottom: 5px;
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .move-history {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .move {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+
+        .status {
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #ffca28;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        .piece {
+            transition: transform 0.4s ease-in-out;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .players-container {
+                flex-direction: column;
+            }
+            
+            #board {
+                width: 90vw;
+                height: 90vw;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero-section" id="home">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6" data-aos="fade-right">
-                    <h1 class="display-3 fw-bold mb-4">Belajar Servis dan Perakitan <span class="gold-highlight">Aki Mobil</span> dari Nol</h1>
-                    <p class="lead mb-5">Kuasai teknik servis, troubleshooting, perakitan plat sel, dan pembuatan alat custom untuk aki mobil secara praktis dan aplikatif</p>
-                    <a href="#pricing" class="btn btn-gold btn-lg">
-                        <i class="fas fa-bolt me-2"></i>Daftar Sekarang
-                    </a>
-                    <div class="mt-5 d-flex align-items-center">
-                        <div class="d-flex me-4">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle border border-2 border-warning" width="40" height="40" alt="Student">
-                            <img src="https://randomuser.me/api/portraits/women/44.jpg" class="rounded-circle border border-2 border-warning ms-n2" width="40" height="40" alt="Student">
-                            <img src="https://randomuser.me/api/portraits/men/62.jpg" class="rounded-circle border border-2 border-warning ms-n2" width="40" height="40" alt="Student">
-                        </div>
-                        <p class="mb-0"><span class="fw-bold">+100</span> peserta telah bergabung!</p>
-                    </div>
-                </div>
-                <div class="col-lg-6 mt-5 mt-lg-0" data-aos="fade-left">
-                    <div class="position-relative">
-                        <div class="position-absolute top-0 start-0 w-100 h-100 bg-warning rounded-3" style="opacity: 0.1; transform: rotate(5deg);"></div>
-                        <div class="position-relative bg-dark rounded-3 overflow-hidden p-4">
-                            <div class="position-relative" style="padding-bottom: 75%;">
-                                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
-                                    <div class="text-center p-4">
-                                        <i class="fas fa-car-battery display-1 text-gold mb-3"></i>
-                                        <h3 class="text-white">Kelas Online Interaktif</h3>
-                                        <p class="text-white-50">Panduan lengkap dari dasar hingga mahir</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tentang Kelas -->
-    <section class="py-5">
-        <div class="container py-5">
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-8 text-center">
-                    <h2 class="section-title">Tentang Kelas Ini</h2>
-                    <p class="lead">Kelas online komprehensif yang dirancang untuk membuat Anda menguasai semua aspek servis dan perakitan aki mobil dari dasar hingga tingkat profesional.</p>
-                </div>
-            </div>
-            
-            <div class="row g-4">
-                <div class="col-md-6" data-aos="fade-up">
-                    <div class="feature-box">
-                        <div class="feature-icon">
-                            <i class="fas fa-video"></i>
-                        </div>
-                        <h3 class="h4 fw-bold mb-3">Format Belajar</h3>
-                        <ul class="list-unstyled benefit-list">
-                            <li>
-                                <i class="fas fa-check-circle"></i>
-                                <div>30+ Video Pembelajaran HD dengan kualitas profesional</div>
-                            </li>
-                            <li>
-                                <i class="fas fa-check-circle"></i>
-                                <div>E-book Panduan Lengkap</div>
-                            </li>
-                            <li>
-                                <i class="fas fa-check-circle"></i>
-                                <div>Akses Grup Whatsapp untuk diskusi</div>
-                            </li>
-                            <li>
-                                <i class="fas fa-check-circle"></i>
-                                <div>Dapat Harga plat sel aki murah</div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature-box">
-                        <div class="feature-icon">
-                            <i class="fas fa-award"></i>
-                        </div>
-                        <h3 class="h4 fw-bold mb-3">Apa yang Anda Dapatkan?</h3>
-                        <ul class="list-unstyled benefit-list">
-                            <li>
-                                <i class="fas fa-check-circle"></i>
-                                <div>Pemahaman menyeluruh tentang sistem aki mobil modern</div>
-                            </li>
-                            <li>
-                                <i class="fas fa-check-circle"></i>
-                                <div>Kemampuan mendiagnosa dan memperbaiki berbagai masalah aki</div>
-                            </li>
-                            <li>
-                                <i class="fas fa-check-circle"></i>
-                                <div>Teknik merakit ulang plat sel dengan presisi</div>
-                            </li>
-                            <li>
-                                <i class="fas fa-check-circle"></i>
-                                <div>Pengetahuan membuat alat custom untuk efisiensi servis</div>
-                            </li>
-                            <li>
-                                <i class="fas fa-check-circle"></i>
-                                <div>Sertifikat kelulusan yang dapat meningkatkan kredibilitas Anda</div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Kurikulum -->
-    <section class="py-5 bg-light">
-        <div class="container py-5">
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-8 text-center">
-                    <h2 class="section-title">Yang Akan Kamu Pelajari</h2>
-                    <p class="lead">Materi lengkap dari dasar hingga teknik profesional yang diajarkan oleh praktisi berpengalaman</p>
-                </div>
-            </div>
-            
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-3" data-aos="fade-up">
-                    <div class="feature-box">
-                        <div class="feature-icon">
-                            <i class="fas fa-tools"></i>
-                        </div>
-                        <h3 class="h5 fw-bold mb-3">Dasar-dasar Aki Mobil</h3>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Prinsip kerja aki mobil</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Komponen utama aki</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Jenis-jenis aki mobil</li>
-                            <li><i class="fas fa-check text-success me-2"></i>Safety prosedur bekerja dengan aki</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-                    <div class="feature-box">
-                        <div class="feature-icon">
-                            <i class="fas fa-wrench"></i>
-                        </div>
-                        <h3 class="h5 fw-bold mb-3">Teknik Servis</h3>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Diagnosa masalah aki</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Perawatan rutin aki</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Isi ulang elektrolit</li>
-                            <li><i class="fas fa-check text-success me-2"></i>Pengecasan yang benar</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-                    <div class="feature-box">
-                        <div class="feature-icon">
-                            <i class="fas fa-cogs"></i>
-                        </div>
-                        <h3 class="h5 fw-bold mb-3">Perakitan Ulang</h3>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Membongkar aki dengan benar</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Memilih plat sel berkualitas</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Teknik merakit plat sel</li>
-                            <li><i class="fas fa-check text-success me-2"></i>Penyegelan aki yang rapat</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-                    <div class="feature-box">
-                        <div class="feature-icon">
-                            <i class="fas fa-hammer"></i>
-                        </div>
-                        <h3 class="h5 fw-bold mb-3">Alat Custom</h3>
-                        <ul class="list-unstyled">
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Desain alat servis custom</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Pembuatan alat pengisi aki</li>
-                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Alat pengukur kesehatan aki</li>
-                            <li><i class="fas fa-check text-success me-2"></i>Perangkat keamanan kerja</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Untuk Siapa Kelas Ini -->
-    <section class="py-5">
-        <div class="container py-5">
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-8 text-center">
-                    <h2 class="section-title">Untuk Siapa Kelas Ini?</h2>
-                    <p class="lead">Kelas ini dirancang untuk berbagai kalangan yang ingin menguasai keterampilan servis dan perakitan aki mobil</p>
-                </div>
-            </div>
-            
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-3" data-aos="fade-up">
-                    <div class="text-center p-4">
-                        <div class="d-inline-block bg-light rounded-circle p-4 mb-3">
-                            <i class="fas fa-user-graduate fa-2x text-gold"></i>
-                        </div>
-                        <h3 class="h5 fw-bold mb-2">Pemula</h3>
-                        <p class="mb-0">Yang ingin memulai karir di bidang otomotif dari dasar</p>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-center p-4">
-                        <div class="d-inline-block bg-light rounded-circle p-4 mb-3">
-                            <i class="fas fa-user-hard-hat fa-2x text-gold"></i>
-                        </div>
-                        <h3 class="h5 fw-bold mb-2">Montir</h3>
-                        <p class="mb-0">Profesional yang ingin menambah spesialisasi di bidang aki</p>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-                    <div class="text-center p-4">
-                        <div class="d-inline-block bg-light rounded-circle p-4 mb-3">
-                            <i class="fas fa-briefcase fa-2x text-gold"></i>
-                        </div>
-                        <h3 class="h5 fw-bold mb-2">Wirausahawan</h3>
-                        <p class="mb-0">Yang ingin membuka usaha servis aki atau bengkel khusus</p>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-                    <div class="text-center p-4">
-                        <div class="d-inline-block bg-light rounded-circle p-4 mb-3">
-                            <i class="fas fa-user-cog fa-2x text-gold"></i>
-                        </div>
-                        <h3 class="h5 fw-bold mb-2">Hobi & DIY</h3>
-                        <p class="mb-0">Pecinta otomotif yang ingin memperbaiki aki sendiri</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row mt-5">
-                <div class="col-lg-8 mx-auto">
-                    <div class="bg-light rounded-3 p-4 p-md-5 text-center" data-aos="zoom-in">
-                        <h3 class="fw-bold mb-3">Mulai Perjalanan Anda Menjadi Ahli Aki Mobil!</h3>
-                        <p class="mb-4">Dengan materi praktis dan panduan langkah demi langkah, Anda akan mampu menguasai keterampilan ini dalam waktu singkat.</p>
-                        <a href="#pricing" class="btn btn-gold">
-                            <i class="fas fa-bolt me-2"></i>Daftar Kelas Sekarang
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-   
-    <!-- Harga dan Promo -->
-    <section class="py-5" id="pricing">
-        <div class="container py-5">
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-8 text-center">
-                    <h2 class="section-title">Harga & Promo Spesial</h2>
-                    <p class="lead">Manfaatkan penawaran harga khusus untuk pendaftaran awal</p>
-                </div>
-            </div>
-            
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="promo-card p-4 p-md-5">
-                        <div class="promo-badge">PROMO</div>
-                        <div class="row align-items-center">
-                            <div class="col-md-6 mb-4 mb-md-0">
-                                <h3 class="fw-bold mb-3">Kelas Premium Akses Seumur Hidup</h3>
-                                <p>Dapatkan semua materi kelas, update materi, sertifikat, dan akses grup komunitas eksklusif</p>
-                                
-                                <div class="d-flex justify-content-center mt-4">
-                                    <div class="countdown-box">
-                                        <div class="countdown-value" id="hours">24</div>
-                                        <div class="countdown-label">Jam</div>
-                                    </div>
-                                    <div class="countdown-box">
-                                        <div class="countdown-value" id="minutes">59</div>
-                                        <div class="countdown-label">Menit</div>
-                                    </div>
-                                    <div class="countdown-box">
-                                        <div class="countdown-value" id="seconds">59</div>
-                                        <div class="countdown-label">Detik</div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-md-6 text-center">
-                                <div class="bg-white rounded-3 p-4 py-5">
-                                    <div class="mb-3">
-                                        <span class="old-price text-muted">Rp 1.250.000</span>
-                                    </div>
-                                    <div class="price-display text-success mb-3">Rp 549.000</div>
-                                    <p class="text-danger fw-bold mb-4">Join Sekarang</p>
-                                    <a href="https://kebutuhanaki.myr.id/pl/kelas-service-aki" class="btn btn-gold w-100 py-3 fw-bold">
-                                        <i class="fas fa-bolt me-2"></i>Daftar Sekarang
-                                    </a>
-                                    <p class="text-muted mt-3 mb-0">Buruan Join </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row mt-5">
-                <div class="col-md-4" data-aos="fade-up">
-                    <div class="stats-box">
-                        <div class="stats-number">30+</div>
-                        <div class="stats-label">Video Pembelajaran</div>
-                    </div>
-                </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="stats-box">
-                        <div class="stats-number">98%</div>
-                        <div class="stats-label">Kepuasan Peserta</div>
-                    </div>
-                </div>
-                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="stats-box">
-                        <div class="stats-number">100+</div>
-                        <div class="stats-label">Peserta Bergabung</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimoni -->
-    <section class="py-5 bg-light">
-        <div class="container py-5">
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-8 text-center">
-                    <h2 class="section-title">Ulasan Dari yang sudah bergabung!</h2>
-                    <p class="lead">Dengarkan pengalaman langsung dari peserta yang telah mengikuti kelas ini</p>
-                </div>
-            </div>
-            
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4" data-aos="fade-up">
-                    <div class="testimonial-card">
-                        <div class="d-flex align-items-center mb-4">
-                            <img src="https://i.ibb.co/dsSVC9zY/dreamina-2025-07-14-3730-buatkan-saya-foto-orang-indonesia-yaitu.jpg" class="testimonial-img me-3" alt="Budi Santoso">
-                            <div>
-                                <h5 class="fw-bold mb-0">Budi Santoso</h5>
-                                <div class="text-warning">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="mb-0">"Sebagai pemula di bidang otomotif, saya sangat terbantu dengan kelas ini. Materinya sangat praktis dan mudah dipahami. Sekarang saya sudah berani membuka usaha kecil-kecilan servis aki."</p>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="testimonial-card">
-                        <div class="d-flex align-items-center mb-4">
-                            <img src="https://i.ibb.co/HTwYxRfY/dreamina-2025-07-14-7718-buatkan-saya-foto-orang-indonesia-yaitu.jpg" class="testimonial-img me-3" alt="Siti Rahayu">
-                            <div>
-                                <h5 class="fw-bold mb-0">Muhamad Abil</h5>
-                                <div class="text-warning">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star-half-alt"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="mb-0">"Materi pembuatan alat custom sangat berguna! Saya bisa membuat alat charger sendiri dengan biaya murah. Kelas ini benar-benar worth it, apalagi dengan harga promonya."</p>
-                    </div>
-                </div>
-                
-                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="testimonial-card">
-                        <div class="d-flex align-items-center mb-4">
-                            <img src="https://i.ibb.co/93Grg1dc/dreamina-2025-07-14-8951-buatkan-saya-foto-orang-indonesia-yaitu.jpg" class="testimonial-img me-3" alt="Rudi Hartono">
-                            <div>
-                                <h5 class="fw-bold mb-0">Rudi Hartono</h5>
-                                <div class="text-warning">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="mb-0">"Sebagai pemilik bengkel, kelas ini membantu saya menambah layanan servis aki yang selama ini saya outsource. Dalam 3 bulan, layanan baru ini sudah bisa menambah pemasukan 30%."</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="py-5">
-        <div class="container py-5">
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-8 text-center">
-                    <h2 class="section-title">Pertanyaan Umum</h2>
-                    <p class="lead">Temukan jawaban untuk pertanyaan yang sering diajukan</p>
-                </div>
-            </div>
-            
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <div class="faq-item" data-aos="fade-up">
-                        <div class="faq-question">
-                            <span>Apakah kelas ini cocok untuk pemula tanpa pengetahuan dasar?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Ya, sangat cocok! Kelas ini dirancang khusus untuk pemula dengan materi yang dimulai dari dasar-dasar yang paling fundamental. Kami akan membimbing Anda langkah demi langkah hingga mahir.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
-                        <div class="faq-question">
-                            <span>Berapa lama akses materi kelas ini?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Anda mendapatkan akses seumur hidup! Setelah mendaftar, Anda bisa mengakses semua materi kapan saja dan di mana saja, termasuk update materi yang akan datang tanpa biaya tambahan.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
-                        <div class="faq-question">
-                            <span>Apakah ada sertifikat setelah menyelesaikan kelas?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Ya, Anda akan mendapatkan sertifikat kelulusan digital yang bisa diunduh setelah menyelesaikan semua modul dan kuis evaluasi. Sertifikat ini dapat digunakan untuk meningkatkan kredibilitas profesional Anda.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
-                        <div class="faq-question">
-                            <span>Bagaimana metode pembelajarannya? Apakah ada sesi live?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Metode pembelajaran utama adalah melalui video rekaman yang bisa Anda tonton kapan saja. Selain itu, ada sesi live Q&A mingguan di grup Telegram untuk berdiskusi langsung dengan mentor dan sesi workshop bulanan.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer CTA -->
-    <section class="footer-cta">
-        <div class="container text-center py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <h2 class="display-5 fw-bold mb-4" data-aos="fade-up">Siap Menguasai Teknik Servis & Perakitan Aki Mobil?</h2>
-                    <p class="lead mb-5" data-aos="fade-up" data-aos-delay="100">Jangan lewatkan kesempatan belajar langsung dari praktisi berpengalaman. Kuota terbatas dan promo hanya berlaku 24 jam!</p>
-                    <a href="#pricing" class="btn btn-gold btn-lg px-5 py-3 fw-bold" data-aos="zoom-in" data-aos-delay="200">
-                        <i class="fas fa-bolt me-2"></i>Gabung Sekarang
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container py-4">
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <h3 class="h4 text-white mb-4">
-                        <i class="battery-icon fas fa-car-battery"></i> kebutuhan aki
-                    </h3>
-                    <p>Platform pembelajaran online khusus untuk teknik servis dan perakitan aki mobil dari dasar hingga profesional.</p>
-                    <div class="mt-4">
-                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
-                        <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
-                    </div>
-                </div>
-                
-                <div class="col-lg-4">
-                    <h3 class="h4 text-white mb-4">Kontak Kami</h3>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><i class="fas fa-envelope me-2 text-gold"></i>sparepartaki@gmail.com</li>
-                        <li class="mb-2"><i class="fas fa-phone me-2 text-gold"></i>083112853692</li>
-                        <li><i class="fas fa-map-marker-alt me-2 text-gold"></i>Blok Q5, Perum Bumi Citra Rajapolah, Tasikmalaya</li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-4">
-                    <h3 class="h4 text-white mb-4">Link Cepat</h3>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#home" class="text-decoration-none text-white-50 hover-gold">Beranda</a></li>
-                        <li class="mb-2"><a href="#pricing" class="text-decoration-none text-white-50 hover-gold">Promo</a></li>
-                        <li class="mb-2"><a href="#" class="text-decoration-none text-white-50 hover-gold">Syarat & Ketentuan</a></li>
-                        <li><a href="#" class="text-decoration-none text-white-50 hover-gold">Kebijakan Privasi</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <hr class="my-4 bg-dark">
-            
-            <div class="text-center">
-                <p class="mb-0">&copy; 2023 kebutuhan aki. Hak Cipta Dilindungi.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- AOS JS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-chess"></i> Auto Chess: Bot vs Bot</h1>
+            <p>Dua mesin catur kuat saling bertarung! Saksikan pertempuran strategi antara Bot Alpha dan Bot Bravo.</p>
+        </header>
         
-        // Countdown Timer (24 hours)
-        function startCountdown() {
-            const hoursElement = document.getElementById('hours');
-            const minutesElement = document.getElementById('minutes');
-            const secondsElement = document.getElementById('seconds');
+        <div class="players-container">
+            <div class="player player-bot-alpha active">
+                <h2><i class="fas fa-robot"></i> Bot Alpha</h2>
+                <div class="clock" id="clock1">10:00</div>
+                <div class="thinking-indicator">
+                    <i class="fas fa-brain"></i> <span>Memikirkan langkah...</span>
+                </div>
+            </div>
             
-            let hours = 24;
-            let minutes = 0;
-            let seconds = 0;
+            <div class="player player-bot-bravo">
+                <h2><i class="fas fa-robot"></i> Bot Bravo</h2>
+                <div class="clock" id="clock2">10:00</div>
+                <div class="thinking-indicator">
+                    <i class="fas fa-brain"></i> <span>Menunggu giliran...</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="game-container">
+            <div id="board"></div>
             
-            const countdown = setInterval(function() {
-                seconds--;
-                if (seconds < 0) {
-                    seconds = 59;
-                    minutes--;
-                    
-                    if (minutes < 0) {
-                        minutes = 59;
-                        hours--;
-                        
-                        if (hours < 0) {
-                            clearInterval(countdown);
-                            hours = 0;
-                            minutes = 0;
-                            seconds = 0;
-                        }
+            <div class="controls">
+                <button id="startBtn" class="btn btn-start">
+                    <i class="fas fa-play"></i> Start Match
+                </button>
+                <button id="pauseBtn" class="btn btn-pause" disabled>
+                    <i class="fas fa-pause"></i> Pause
+                </button>
+                <button id="restartBtn" class="btn btn-restart">
+                    <i class="fas fa-redo"></i> Restart
+                </button>
+            </div>
+            
+            <div class="status" id="gameStatus">Game siap dimulai!</div>
+        </div>
+        
+        <div class="commentary">
+            <h3><i class="fas fa-comments"></i> Komentar Pertandingan</h3>
+            <div id="commentaryText">
+                <div class="comment">Pertandingan akan segera dimulai. Dua bot catur siap bertarung!</div>
+            </div>
+            <div class="move-history" id="moveHistory"></div>
+        </div>
+        
+        <div class="footer">
+            <p>Dibuat dengan HTML, CSS, JavaScript | Menggunakan Stockfish.js dan Chessboard.js</p>
+        </div>
+    </div>
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/chessboard-1.0.0.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/stockfish.js@10/stockfish.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize chessboard
+            const board = Chessboard('board', {
+                pieceTheme: 'https://cdnjs.cloudflare.com/ajax/libs/chessboard-js/1.0.0/img/chesspieces/wikipedia/{piece}.png',
+                position: 'start',
+                draggable: false,
+                moveSpeed: 'slow',
+                snapbackSpeed: 500,
+                snapSpeed: 100
+            });
+            
+            // Game state
+            const game = new Chess();
+            let bot1, bot2;
+            let currentPlayer = 'w'; // 'w' for white, 'b' for black
+            let timer1 = 600; // 10 minutes in seconds
+            let timer2 = 600;
+            let timerInterval;
+            let isPaused = false;
+            let isPlaying = false;
+            let moveCount = 0;
+            let lastEvaluation = 0;
+            
+            // DOM elements
+            const clock1El = document.getElementById('clock1');
+            const clock2El = document.getElementById('clock2');
+            const startBtn = document.getElementById('startBtn');
+            const pauseBtn = document.getElementById('pauseBtn');
+            const restartBtn = document.getElementById('restartBtn');
+            const gameStatus = document.getElementById('gameStatus');
+            const commentaryText = document.getElementById('commentaryText');
+            const moveHistory = document.getElementById('moveHistory');
+            const player1El = document.querySelector('.player-bot-alpha');
+            const player2El = document.querySelector('.player-bot-bravo');
+            const thinkIndicator1 = player1El.querySelector('.thinking-indicator');
+            const thinkIndicator2 = player2El.querySelector('.thinking-indicator');
+            
+            // Initialize bots
+            function initBots() {
+                bot1 = new Worker('https://cdn.jsdelivr.net/npm/stockfish.js@10/stockfish.js');
+                bot2 = new Worker('https://cdn.jsdelivr.net/npm/stockfish.js@10/stockfish.js');
+                
+                bot1.postMessage("uci");
+                bot1.postMessage("isready");
+                bot2.postMessage("uci");
+                bot2.postMessage("isready");
+                
+                bot1.onmessage = handleBotMessage;
+                bot2.onmessage = handleBotMessage;
+            }
+            
+            // Format time display
+            function formatTime(seconds) {
+                const mins = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+            
+            // Update clock display
+            function updateClockDisplay() {
+                clock1El.textContent = formatTime(timer1);
+                clock2El.textContent = formatTime(timer2);
+            }
+            
+            // Update clocks
+            function updateClocks() {
+                if (isPaused || !isPlaying) return;
+                
+                if (currentPlayer === 'w') {
+                    timer1--;
+                    if (timer1 <= 0) {
+                        endGame('w');
+                    }
+                } else {
+                    timer2--;
+                    if (timer2 <= 0) {
+                        endGame('b');
                     }
                 }
                 
-                hoursElement.textContent = hours.toString().padStart(2, '0');
-                minutesElement.textContent = minutes.toString().padStart(2, '0');
-                secondsElement.textContent = seconds.toString().padStart(2, '0');
-            }, 1000);
-        }
-        
-        // FAQ Accordion
-        $(document).ready(function() {
-            $('.faq-question').click(function() {
-                $(this).closest('.faq-item').toggleClass('active');
-                $(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
-            });
+                updateClockDisplay();
+            }
             
-            // Start countdown
-            startCountdown();
+            // Start the game
+            function startGame() {
+                if (isPlaying) return;
+                
+                isPlaying = true;
+                isPaused = false;
+                startBtn.disabled = true;
+                pauseBtn.disabled = false;
+                gameStatus.textContent = "Pertandingan sedang berlangsung!";
+                
+                // Reset timers
+                timer1 = 600;
+                timer2 = 600;
+                updateClockDisplay();
+                
+                // Start the clock
+                timerInterval = setInterval(updateClocks, 1000);
+                
+                // Start with white
+                currentPlayer = 'w';
+                updateActivePlayer();
+                makeBotMove();
+            }
+            
+            // Pause the game
+            function pauseGame() {
+                if (!isPlaying) return;
+                
+                isPaused = !isPaused;
+                
+                if (isPaused) {
+                    pauseBtn.innerHTML = '<i class="fas fa-play"></i> Resume';
+                    gameStatus.textContent = "Pertandingan dijeda";
+                    addCommentary("Pertandingan dijeda sementara waktu.");
+                } else {
+                    pauseBtn.innerHTML = '<i class="fas fa-pause"></i> Pause';
+                    gameStatus.textContent = "Pertandingan sedang berlangsung!";
+                    addCommentary("Pertandingan dilanjutkan.");
+                    makeBotMove();
+                }
+            }
+            
+            // Restart the game
+            function restartGame() {
+                // Clear any ongoing game state
+                clearInterval(timerInterval);
+                isPlaying = false;
+                isPaused = false;
+                
+                // Reset game
+                game.reset();
+                board.position(game.fen());
+                
+                // Reset timers
+                timer1 = 600;
+                timer2 = 600;
+                updateClockDisplay();
+                
+                // Reset UI
+                startBtn.disabled = false;
+                pauseBtn.disabled = true;
+                pauseBtn.innerHTML = '<i class="fas fa-pause"></i> Pause';
+                gameStatus.textContent = "Game siap dimulai!";
+                moveCount = 0;
+                moveHistory.innerHTML = '';
+                commentaryText.innerHTML = '<div class="comment">Pertandingan akan segera dimulai. Dua bot catur siap bertarung!</div>';
+                lastEvaluation = 0;
+                
+                // Reset player indicators
+                player1El.classList.add('active');
+                player2El.classList.remove('active');
+                thinkIndicator1.style.display = 'flex';
+                thinkIndicator2.style.display = 'flex';
+                thinkIndicator1.querySelector('span').textContent = 'Memikirkan langkah...';
+                thinkIndicator2.querySelector('span').textContent = 'Menunggu giliran...';
+                
+                // Reinitialize bots
+                if (bot1) bot1.terminate();
+                if (bot2) bot2.terminate();
+                initBots();
+            }
+            
+            // Update active player UI
+            function updateActivePlayer() {
+                if (currentPlayer === 'w') {
+                    player1El.classList.add('active');
+                    player2El.classList.remove('active');
+                    thinkIndicator1.querySelector('span').textContent = 'Memikirkan langkah...';
+                    thinkIndicator2.querySelector('span').textContent = 'Menunggu giliran...';
+                } else {
+                    player1El.classList.remove('active');
+                    player2El.classList.add('active');
+                    thinkIndicator1.querySelector('span').textContent = 'Menunggu giliran...';
+                    thinkIndicator2.querySelector('span').textContent = 'Memikirkan langkah...';
+                }
+            }
+            
+            // Make a bot move
+            function makeBotMove() {
+                if (!isPlaying || isPaused) return;
+                
+                const bot = currentPlayer === 'w' ? bot1 : bot2;
+                
+                // Set up position
+                bot.postMessage(`position fen ${game.fen()}`);
+                
+                // Set thinking time (2-5 seconds)
+                const thinkTime = Math.floor(Math.random() * 3000) + 2000;
+                bot.postMessage(`go movetime ${thinkTime}`);
+                
+                updateActivePlayer();
+            }
+            
+            // Handle bot messages
+            function handleBotMessage(event) {
+                if (!isPlaying || isPaused) return;
+                
+                const data = event.data;
+                
+                if (data.includes('bestmove')) {
+                    const match = data.match(/bestmove (\w+)/);
+                    if (match) {
+                        const move = match[1];
+                        
+                        // Make the move on the game board
+                        const moveObj = game.move(move, { sloppy: true });
+                        
+                        if (moveObj === null) {
+                            // Illegal move - shouldn't happen with bots, but handle just in case
+                            return;
+                        }
+                        
+                        // Update the board with animation
+                        board.position(game.fen(), true);
+                        
+                        // Add move to history
+                        moveCount++;
+                        const moveEl = document.createElement('div');
+                        moveEl.className = 'move';
+                        moveEl.textContent = `${moveCount}. ${move}`;
+                        moveHistory.appendChild(moveEl);
+                        
+                        // Add commentary
+                        addCommentaryForMove(moveObj);
+                        
+                        // Switch player
+                        currentPlayer = currentPlayer === 'w' ? 'b' : 'w';
+                        
+                        // Check game status
+                        if (game.game_over()) {
+                            endGame();
+                            return;
+                        }
+                        
+                        // Make next move after a short delay
+                        setTimeout(() => {
+                            makeBotMove();
+                        }, 500);
+                    }
+                } else if (data.includes('info depth') && data.includes('score cp')) {
+                    // Extract evaluation
+                    const evalMatch = data.match(/score cp (-?\d+)/);
+                    if (evalMatch) {
+                        const evaluation = parseInt(evalMatch[1]) / 100;
+                        
+                        // We'll use this for commentary later
+                        lastEvaluation = evaluation;
+                    }
+                }
+            }
+            
+            // Add commentary for a move
+            function addCommentaryForMove(move) {
+                let comment = "";
+                const pieceNames = {
+                    'p': 'pion', 'r': 'benteng', 'n': 'kuda', 
+                    'b': 'gajah', 'q': 'ratu', 'k': 'raja'
+                };
+                
+                const piece = pieceNames[move.piece] || move.piece;
+                const capture = move.captured ? ` dan mengambil ${pieceNames[move.captured] || move.captured} lawan` : "";
+                
+                // Basic move description
+                comment = `Bot ${currentPlayer === 'w' ? 'Bravo' : 'Alpha'} menggerakkan ${piece} ke ${move.to.toUpperCase()}${capture}.`;
+                
+                // Add strategic comments based on position
+                const evalDiff = Math.abs(lastEvaluation);
+                
+                if (evalDiff > 3) {
+                    comment += " Langkah yang sangat kuat!";
+                } else if (evalDiff > 1.5) {
+                    comment += " Langkah bagus untuk memperkuat posisi.";
+                } else if (evalDiff < 0.5) {
+                    comment += " Langkah netral, tidak mengubah posisi secara signifikan.";
+                }
+                
+                // Special move comments
+                if (move.flags.includes('k')) {
+                    comment += " Rokade raja untuk meningkatkan keamanan raja!";
+                } else if (move.flags.includes('q')) {
+                    comment += " Rokade ratu untuk mengaktifkan benteng!";
+                } else if (move.flags.includes('b')) {
+                    comment += " Pion dipromosikan menjadi ratu! Langkah penting di akhir permainan.";
+                } else if (move.flags.includes('e')) {
+                    comment += " En passant! Taktik cerdik untuk mengambil pion lawan.";
+                }
+                
+                // Check for blunders
+                if (evalDiff < -2) {
+                    comment += " Sepertinya ini blunder! Memberi keuntungan signifikan untuk lawan.";
+                }
+                
+                addCommentary(comment);
+            }
+            
+            // Add commentary text
+            function addCommentary(text) {
+                const commentEl = document.createElement('div');
+                commentEl.className = 'comment';
+                commentEl.textContent = text;
+                
+                // Add to top
+                commentaryText.insertBefore(commentEl, commentaryText.firstChild);
+                
+                // Limit to 10 comments
+                if (commentaryText.children.length > 10) {
+                    commentaryText.removeChild(commentaryText.lastChild);
+                }
+            }
+            
+            // End the game
+            function endGame(reason) {
+                clearInterval(timerInterval);
+                isPlaying = false;
+                startBtn.disabled = true;
+                pauseBtn.disabled = true;
+                
+                let resultText = "";
+                
+                if (reason === 'w') {
+                    resultText = "Bot Alpha kehabisan waktu! Bot Bravo menang!";
+                    addCommentary("Bot Alpha kehabisan waktu! Bot Bravo dinyatakan sebagai pemenang.");
+                } else if (reason === 'b') {
+                    resultText = "Bot Bravo kehabisan waktu! Bot Alpha menang!";
+                    addCommentary("Bot Bravo kehabisan waktu! Bot Alpha dinyatakan sebagai pemenang.");
+                } else if (game.in_checkmate()) {
+                    const winner = game.turn() === 'w' ? 'Bravo' : 'Alpha';
+                    resultText = `Skakmat! Bot ${winner} menang!`;
+                    addCommentary(`Skakmat yang indah! Bot ${winner} memenangkan pertandingan.`);
+                } else if (game.in_draw()) {
+                    resultText = "Permainan berakhir seri!";
+                    addCommentary("Permainan berakhir seri setelah pertarungan sengit.");
+                } else if (game.in_stalemate()) {
+                    resultText = "Stalemate! Permainan seri.";
+                    addCommentary("Stalemate! Tidak ada langkah legal yang tersisa, permainan berakhir seri.");
+                } else if (game.in_threefold_repetition()) {
+                    resultText = "Pengulangan tiga kali! Permainan seri.";
+                    addCommentary("Posisi diulang tiga kali, permainan berakhir seri.");
+                } else if (game.insufficient_material()) {
+                    resultText = "Material tidak cukup! Permainan seri.";
+                    addCommentary("Tidak cukup material untuk melakukan skakmat, permainan berakhir seri.");
+                } else {
+                    resultText = "Permainan berakhir!";
+                    addCommentary("Permainan berakhir!");
+                }
+                
+                gameStatus.textContent = resultText;
+                
+                // Update thinking indicators
+                thinkIndicator1.style.display = 'none';
+                thinkIndicator2.style.display = 'none';
+            }
+            
+            // Event listeners
+            startBtn.addEventListener('click', startGame);
+            pauseBtn.addEventListener('click', pauseGame);
+            restartBtn.addEventListener('click', restartGame);
+            
+            // Initialize
+            updateClockDisplay();
+            initBots();
         });
     </script>
 </body>
-</html>
+    </html>
